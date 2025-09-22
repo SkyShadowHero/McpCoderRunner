@@ -26,7 +26,6 @@ git clone https://github.com/SkyShadowHero/McpCoderRunner.git
 cd McpCoderRunner
 # 给予脚本执行权限
 chmod +x first_launch.sh
-
 # 运行脚本
 ./first_launch.sh
 
@@ -44,13 +43,11 @@ cd McpCoderRunner
 ```
 ## 第二步: 创建和进入虚拟环境
 ```Bash
-
 ### 创建虚拟环境 (推荐使用 uv)
 #### 使用uv
 uv venv
 #### 使用python
 python -m venv venv
-
 ### 进入环境
 #### Windows (PowerShell)
 .\venv\Scripts\Activate.ps1
@@ -58,14 +55,12 @@ python -m venv venv
 venv\Scripts\activate.bat
 #### Mac / Linux
 source venv/bin/activate
-
 ```
 ## 第三步: 安装依赖
 
 ```Bash
 # 推荐使用 uv
 uv pip install -r requirements.txt
-
 # 或者使用 pip
 pip install -r requirements.txt
 ```
@@ -138,3 +133,4 @@ python main.py
 # 写在最后
 
 此代码部分由llm完成，参考价值不大
+项目来源于deepin的 **#MCP 探索家#** 活动
