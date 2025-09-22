@@ -21,6 +21,9 @@
 对于 Linux 用户，提供了简易的一键安装配置脚本。
 
 ```bash
+# 克隆项目
+git clone https://github.com/SkyShadowHero/McpCoderRunner.git
+cd McpCoderRunner
 # 给予脚本执行权限
 chmod +x first_launch.sh
 
@@ -36,8 +39,8 @@ chmod +x first_launch.sh
 ## 第一步: 克隆项目
 
 ```Bash
-git clone https://github.com/SkyShadowHero/python-mcp.git
-cd python-mcp
+git clone https://github.com/SkyShadowHero/McpCoderRunner.git
+cd McpCoderRunner
 ```
 ## 第二步: 创建和进入虚拟环境
 ```Bash
