@@ -32,7 +32,7 @@ chmod +x first_launch.sh
 
 脚本会自动完成环境创建、依赖安装、配置引导，并最终测试启动服务。
 ```
-运行中会要求填写mcp_config.json(模型相关)和、并弹出import_mcp.json，可通过import_mcp.json里的示例导入进支持mcp的客户端如UOS Ai等
+运行中会要求填写mcp_config.json(模型相关)并弹出import_mcp.json，可通过import_mcp.json里的示例导入进支持mcp的客户端如UOS Ai等
 
 ### 手动安装
 
