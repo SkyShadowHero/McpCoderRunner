@@ -1,0 +1,10 @@
+# MCP 核心框架
+mcp
+
+# LangChain 库，用于与大语言模型交互
+langchain-core
+langchain-community
+langchain-openai
+
+# Pydantic，用于数据模型定义和校验
+pydantic
