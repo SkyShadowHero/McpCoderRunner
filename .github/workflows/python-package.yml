@@ -45,6 +45,6 @@ jobs:
 
     # 第四步：运行启动测试
     - name: Run Startup Test
-      run: python main.py | head -n 10
+      run: python main.py | head -n 30
       # 在所有平台上都使用 bash shell 来确保命令一致性
       shell: bash
