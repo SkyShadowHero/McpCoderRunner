@@ -48,3 +48,5 @@ jobs:
       run: python main.py | head -n 30
       # 在所有平台上都使用 bash shell 来确保命令一致性
       shell: bash
+      env:
+        PYTHONIOENCODING: "utf-8"
