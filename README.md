@@ -101,8 +101,14 @@ python main.py
 
 
 # 简单演示
+此图为最新演示
 
-图中为Ollama的deepseek-coder-v2:16b+UOS AI+这个mcp服务
+## 获取bing今日美图
+
+![Bing.gif](/showcase/Bing.gif)
+
+
+以下图中为Ollama的deepseek-coder-v2:16b+UOS AI+这个mcp服务
 
 ## svg图片换色
 
