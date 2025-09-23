@@ -18,8 +18,8 @@ jobs:
     strategy:
       fail-fast: false # 设置为 false，这样即使一个任务失败，其他任务也会继续运行
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.10", "3.11", "3.12"]
 
     # 指定任务运行的虚拟机环境
     runs-on: ${{ matrix.os }}
