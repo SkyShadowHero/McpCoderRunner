@@ -44,31 +44,7 @@ jobs:
         pip install -r requirements.txt
 
     # 第四步：运行启动测试
-    # 这个步骤会尝试启动 main.py。如果启动时有任何错误，工作流会失败。
-    # 我们使用 timeout 命令来确保它只运行很短的时间，然后被终止。
     - name: Run Startup Test
-      run: |
-        # 使用 timeout 命令。它会运行 python main.py，
-        # 如果 5 秒后程序仍在运行，timeout 会自动终止它并成功退出。
-        # 如果程序在 5 秒内因错误退出，timeout 会以失败状态退出，从而使工作流失败。
-        timeout 5s python main.py || true
-      # 仅在 Linux 和 macOS 上运行此测试
-      if: runner.os != 'Windows'
-
-    # 为 Windows 单独设置运行测试步骤
-    - name: Run Startup Test on Windows
-      run: |
-        # 在 Windows 上，我们可以使用 Start-Process 和 Stop-Process
-        Start-Process python -ArgumentList "main.py" -NoNewWindow
-        Start-Sleep -Seconds 5
-        # 检查进程是否存在，如果存在则停止它
-        $process = Get-Process -Name "python" -ErrorAction SilentlyContinue
-        if ($process) {
-          echo "Success: main.py started without crashing."
-          Stop-Process -Name "python" -Force
-        } else {
-          echo "Error: main.py exited prematurely."
-          exit 1
-        }
-      # 仅在 Windows 上运行此测试
-      if: runner.os == 'Windows'
+      run: python main.py | head -n 10
+      # 在所有平台上都使用 bash shell 来确保命令一致性
+      shell: bash
