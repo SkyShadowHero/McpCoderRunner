@@ -33,7 +33,7 @@ chmod +x first_launch.sh
 ```
 运行中会要求填写mcp_config.json(模型相关)并弹出import_mcp.json，可通过import_mcp.json里的示例导入进支持mcp的客户端如UOS Ai等
 
-### 手动安装
+### 手动安装（Linux，Macos或Windows）
 
 ## 第一步: 克隆项目
 
@@ -116,12 +116,6 @@ python main.py
 
 ![.png](https://s2.loli.net/2025/08/06/O9ELpVshiA8nmWv.png)
 
-## 网络功能
-
-抓取bing美图到本地
-
-![.png](https://s2.loli.net/2025/08/06/gPcVODvZrYUsLRi.png)
-
 ## 复杂任务
 
 将MiSans字体中的天影大侠提取出来绘制为白色图片并添加黑色边框
@@ -132,5 +126,5 @@ python main.py
 
 # 写在最后
 
-此代码部分由llm完成，参考价值不大
+此代码部分由llm完成，参考价值不大  
 项目来源于deepin的 **#MCP 探索家#** 活动
