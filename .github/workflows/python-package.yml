@@ -1,0 +1,72 @@
+# 工作流名称
+name: Python Application CI
+
+# 触发工作流的事件
+on:
+  push:
+    branches: [ "main", "master" ] # 当主分支有推送时触发
+  pull_request:
+    branches: [ "main", "master" ] # 当向主分支发起 Pull Request 时触发
+
+# 定义工作流中的任务
+jobs:
+  build-and-test:
+    # 任务名称
+    name: Test on ${{ matrix.os }} with Python ${{ matrix.python-version }}
+    
+    # 定义运行环境和 Python 版本的矩阵
+    strategy:
+      fail-fast: false # 设置为 false，这样即使一个任务失败，其他任务也会继续运行
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+
+    # 指定任务运行的虚拟机环境
+    runs-on: ${{ matrix.os }}
+
+    # 定义任务的步骤
+    steps:
+    # 第一步：检出代码
+    # 这个步骤会从你的仓库中拉取最新的代码
+    - name: Check out repository code
+      uses: actions/checkout@v4
+
+    # 第二步：设置 Python 环境
+    # 使用 actions/setup-python 来安装指定版本的 Python
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip' # 启用 pip 缓存以加快后续构建速度
+
+    # 第三步：安装依赖
+    # 升级 pip 并从 requirements.txt 安装所有依赖项
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # 第四步：运行一个简单的启动测试
+    # 这个测试会启动 main.py，等待几秒钟，然后检查它是否仍在运行（或是否已因错误而崩溃）
+    # 这是一个基础的“冒烟测试”，确保程序可以成功初始化。
+    - name: Run a quick startup test
+      run: |
+        echo "Starting main.py in the background..."
+        python main.py &
+        PID=$!
+        
+        echo "Waiting for 5 seconds..."
+        sleep 5
+        
+        # 检查进程是否仍然存在
+        # kill -0 $PID 不会杀死进程，只是检查它是否存在。如果存在，命令成功（返回0），否则失败。
+        if kill -0 $PID; then
+          echo "Success: main.py is still running after 5 seconds."
+          kill $PID # 测试成功后，终止进程
+        else
+          echo "Error: main.py exited prematurely. It might have crashed on startup."
+          exit 1 # 标记此步骤为失败
+        fi
+      # shell: bash 确保在所有平台（包括Windows）上都使用bash语法
+      # GitHub Actions 的 Windows runner 内置了 Git Bash
+      shell: bash
